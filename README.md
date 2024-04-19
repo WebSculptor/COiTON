@@ -1,11 +1,12 @@
-# Decentralized Real Estate Trading Platform
+### Decentralized Real Estate Trading Platform
+# DECENTRALIZED REAL ESTATE AND INDEX ([DREXiNDEX](https://urban-xchange.vercel.app/))
 
 
-         DDDDDDD    RRRRRRRR   EEEEEEEE   TTTTTTT   PPPPPPPP      
-         D      D   R       R  E             T      P       P       
-         D      D   RRRRRRRR   EEEEEEEE      T      PPPPPPPP     
-         D      D   R    R     E             T      P 
-         DDDDDDD    R      R   EEEEEEEE      T      P 
+         DDDDDDD      RRRRRRRR     EEEEEEEE     X       X      o      N       N     DDDDDDD      EEEEEEE     X        X
+         D      D     R       R    E              X   X        ii     N N     N     D      D     E             X    X
+         D      D     RRRRRRRR     EEEEEEEE         X          ii     N   N   N     D      D     EEEEEEE          X
+         D      D     R    R       E             X     X       ii     N     N N     D      D     E              X   X
+         DDDDDDD      R      R     EEEEEEEE    X         X     ii     N       N     DDDDDDD      EEEEEEE      X        X
 
                                                /////////////////////////////////////////////\
                                              /////////////////////////////////////////////|||\
@@ -18,9 +19,9 @@
                          /////////////////////////////////////////////|        | ASSETS.        |   \
                        ///////////////////////////////////////////////////////////////////////////////\
                             [                                                                       ]
-                            [_____________] DECENTRALIZED REAL ESTATE TRADING PLATFORM [DRETF]      ]
+                            [[[[[[[[]]]]]]] DECENTRALIZED REAL ESTATE AND INDEX [DREXINDEX]         ]
                             [             ]       BUY AND SELL REAL ESTATE ASSETS                   ]
-                            [             ]       TRADE REAL ESTATE INDICES       [              ]  ]
+                            [             ]       TRADE REAL ESTATE INDICES       [[[[[[[[]]]]]]]]  ]
                             [_____________]       TRADE NFT's                     [              ]  ]
                             [                                                     [              ]  ]
                             [                                                     [              ]  ]
@@ -39,3 +40,63 @@
          
 
 This project aims to develop a Decentralized Real Estate Trading Platform that enables users to speculate on and trade city indices representing real estate markets. The platform will use blockchain technology to ensure transparency, security, and accessibility, allowing users to engage in trading without the need to own physical properties.
+
+## Screenshot
+![Screenshot from 2024-04-18 21-51-06](https://github.com/WebSculptor/decentralized-real-estate-trading-platform/assets/137540755/ac087875-54b4-4c41-959c-41cdf80b5265)
+
+## Made With
+  ### Languages
+   * Solidity
+   * Javascript
+   * Typescript
+
+ ### Tools/Frameworks
+##### Foundry
+Installation (CLI)
+
+         `curl -L https://foundry.paradigm.xyz | bash`
+           
+To start a new project with Foundry, use
+
+           `forge init`
+To build the project run
+
+            `forge build`
+And run the tests with 
+
+             `forge test`
+             
+  ##### Ethers.js
+  To Install: `npm install --save ethers`
+  To Import: `import { ethers } from "ethers";`
+  
+  ##### React.js
+  ##### Tailwind CSS
+  ##### Next.js
+
+## Repository Structure
+ ### Contract
+   Contracts
+   A Foundry + Hardhat Diamond Contract
+   consisting:
+   * Facets
+   * Interfaces
+   * Libraries
+   * UpgradeInitializers
+   * Diamond contract
+ ### Frontend
+   src
+   User Interface Logic
+   * app
+   * components
+   * constants
+   * hooks
+   * lib
+   * styles
+   * types
+   
+
+## Team
+ * X: [Web3Bridge](https://twitter.com/Web3Bridge) Cohort X Team XI
+
+
