@@ -122,13 +122,32 @@ import "../contracts/libraries/Errors.sol";
       
 
     }
-    function testInitiatePurchase() public {
+    function testEmptySignerPurchase() public {
       
         switchSigner(A);
         vm.expectRevert(
             abi.encodeWithSelector(ERRORS.INVALID_SIGNERS_COUNT.selector)
         );
         boundEstate.initiatePurchaseAgreement(1, A, emptySigners);
+
+    }
+
+    function testIsSignerValid() public {
+           switchSigner(B);
+        vm.expectRevert(
+            abi.encodeWithSelector(ERRORS.INVALID_ENTITIES.selector)
+        );
+        boundEstate.initiatePurchaseAgreement(1, A, mockSigners);
+
+    }
+
+
+    function testIsValidSigner() public {
+            switchSigner(B);
+        boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
+         bool isValid = boundEstate.isValidSigner(1, address(0xC));
+        
+         assertEq(isValid, true);
 
     }
 
