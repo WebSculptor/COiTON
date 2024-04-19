@@ -38,7 +38,6 @@ contract RealEstate {
         uint256 price,
         string memory images
     ) external {
-        // require(msg.sender != address(0), "INVALID_CONTRACT_ADDRESS");
           if (owner == address(0)) {
             revert ERRORS.UNAUTHORIZED();
         }

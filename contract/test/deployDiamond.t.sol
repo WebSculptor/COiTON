@@ -25,6 +25,9 @@ import "../contracts/libraries/Errors.sol";
         address C = 0x107Ff7900F4dA6BFa4eB41dBD6f2953ffb41b2B1;
         address D = 0x107Ff7900F4dA6BFa4eB41dBD6f2953ffb41b2B1;
 
+        address[] mockSigners = [address(0xC), address(0xD)]; // Mock signer addresses
+        address[] emptySigners = new address[](0);
+
 
     RealEstate boundEstate;
     function setUp() public {
@@ -119,10 +122,15 @@ import "../contracts/libraries/Errors.sol";
       
 
     }
-    // function testInitiatePurchase() public {
-    //     switchSigner(A);
-    //     boundEstate.initiatePurchaseAgreement(1, A, [C,D]);
-    // }
+    function testInitiatePurchase() public {
+      
+        switchSigner(A);
+        vm.expectRevert(
+            abi.encodeWithSelector(ERRORS.INVALID_SIGNERS_COUNT.selector)
+        );
+        boundEstate.initiatePurchaseAgreement(1, A, emptySigners);
+
+    }
 
 
     function generateSelectors(
