@@ -204,30 +204,21 @@ import "../contracts/libraries/Errors.sol";
        
     }
 
-    //     function testSignPurchaseAgreementStateChange() public {
-    //              switchSigner(B);
-    //     boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
-    //     switchSigner(address(0xC));
-    //      boundEstate.signPurchaseAgreement(1);
-    //       vm.stopPrank();
 
-    //     //   switchSigner(address(0xD));
-
-    //     //    boundEstate.signPurchaseAgreement(1);
-
-           
+        function testSignPurchaseAgreementStateChangeTrue() public {
+                 switchSigner(B);
+        boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
+        switchSigner(address(0xC));
+         boundEstate.signPurchaseAgreement(1);
+         
+         switchSigner(address(0xD));
+             boundEstate.signPurchaseAgreement(1);
     
-    //            vm.expectRevert(
-    //         abi.encodeWithSelector(ERRORS.ALREADY_EXECUTED.selector)
-    //     );
-    //     // // boundEstate.signPurchaseAgreement(1);
-    //       LibAppStorage.PurchaseAgreement memory new_listing = boundEstate.getPurchaseAgreement(0);
+         LibAppStorage.PurchaseAgreement memory new_listing = boundEstate.getPurchaseAgreement(1);
+          assertEq(new_listing.executed, true);
            
-    //        boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
-    //          boundEstate.signPurchaseAgreement(1);
-    //          assertEq(new_listing.executed, false);
-
-    // }
+            
+    }
 
 
     function generateSelectors(
