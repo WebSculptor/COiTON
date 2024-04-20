@@ -27,6 +27,7 @@ import "../contracts/libraries/Errors.sol";
 
         address[] mockSigners = [address(0xC), address(0xD)]; // Mock signer addresses
         address[] emptySigners = new address[](0);
+      
 
 
     RealEstate boundEstate;
@@ -150,6 +151,83 @@ import "../contracts/libraries/Errors.sol";
          assertEq(isValid, true);
 
     }
+
+    function testInitiateSignerStateChange() public {
+                 switchSigner(B);
+        boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
+           LibAppStorage.PurchaseAgreement memory new_listing = boundEstate.getPurchaseAgreement(1);
+           assertEq(new_listing.id, 1);
+          assertEq(new_listing.buyer, B);
+         assertEq(new_listing.estateId, 1);
+         assertEq(new_listing.initiator, B);
+
+    }
+
+    function testSignPurchaseAgreementvalid() public {
+        switchSigner(B);
+         boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
+             vm.expectRevert(
+            abi.encodeWithSelector(ERRORS.NOT_A_VALID_SIGNER.selector)
+        );
+        boundEstate.signPurchaseAgreement(2);
+
+    }
+
+    function testSignPurchaseAgreementFunction() public {
+         switchSigner(B);
+         boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
+       switchSigner(address(0xC));
+          
+         boundEstate.signPurchaseAgreement(1);
+       
+    }
+
+        function testSignPurchaseAgreementAlreadySigned() public {
+         switchSigner(B);
+         boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
+       switchSigner(address(0xC));
+         boundEstate.signPurchaseAgreement(1);
+         vm.stopPrank();
+        
+          switchSigner(address(0xD));
+
+           boundEstate.signPurchaseAgreement(1);
+
+             switchSigner(address(0xD));
+             vm.expectRevert(
+            abi.encodeWithSelector(ERRORS.ALREADY_SIGNED.selector)
+        );
+          
+           boundEstate.signPurchaseAgreement(1);
+
+
+       
+    }
+
+    //     function testSignPurchaseAgreementStateChange() public {
+    //              switchSigner(B);
+    //     boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
+    //     switchSigner(address(0xC));
+    //      boundEstate.signPurchaseAgreement(1);
+    //       vm.stopPrank();
+
+    //     //   switchSigner(address(0xD));
+
+    //     //    boundEstate.signPurchaseAgreement(1);
+
+           
+    
+    //            vm.expectRevert(
+    //         abi.encodeWithSelector(ERRORS.ALREADY_EXECUTED.selector)
+    //     );
+    //     // // boundEstate.signPurchaseAgreement(1);
+    //       LibAppStorage.PurchaseAgreement memory new_listing = boundEstate.getPurchaseAgreement(0);
+           
+    //        boundEstate.initiatePurchaseAgreement(1, B, mockSigners);
+    //          boundEstate.signPurchaseAgreement(1);
+    //          assertEq(new_listing.executed, false);
+
+    // }
 
 
     function generateSelectors(

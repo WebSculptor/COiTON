@@ -156,6 +156,11 @@ contract RealEstate {
         );
     }
 
+    function getPurchaseAgreement(uint agreementId) external view returns (LibAppStorage.PurchaseAgreement memory) {
+    return l.purchaseAgreement[agreementId];
+}
+
+
     function signPurchaseAgreement(uint estateId) external {
         if (!l.isValidSigner[estateId][msg.sender]) {
             revert ERRORS.NOT_A_VALID_SIGNER();
@@ -170,6 +175,7 @@ contract RealEstate {
         }
 
         _purchaseAgreement.signersCount += 1;
+          l.hasSignedPurchaseAgreement[estateId][msg.sender] = true;
 
         if (
             _purchaseAgreement.signersCount ==
@@ -178,5 +184,5 @@ contract RealEstate {
             _purchaseAgreement.executed = true;
             /// TRANSFER TOKENS HERE;
         }
-    }
+     }
 }
