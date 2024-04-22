@@ -282,6 +282,25 @@ contract DiamondDeployer is Test, IDiamondCut {
             10,
             ""
         );
+
+        bytes32 expectedHash = keccak256(
+            abi.encodePacked(
+              "1",
+            A,
+            "nigeria",
+            "lagos",
+            "ikorodu",
+            "estateAddress",
+            "0",
+            "description",
+            "10",
+            ""
+            )
+        );
+
+        // LibAppStorage.Listing memory newListing = realEstate.getListing(0);
+        assertEq(l.listingApproval["1"].hash, expectedHash);
+
         LibAppStorage.Listing memory new_listing = boundEstate.getListing(0);
         assertEq(new_listing.owner, A);
         assertEq(new_listing.country, "nigeria");
